@@ -4,6 +4,7 @@ $(function () {
   getUserInfo();
 
   var layer = layui.layer;
+  // 点击按钮,实现退出功能
   $('#btnLogout').on('click', function () {
     // 提示用户是否退出
     layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function (index) {
@@ -13,7 +14,7 @@ $(function () {
       // 2.重新跳转到登陆界面
       location.href = '/login.html';
 
-      // 关闭confirm询问狂
+      // 关闭confirm询问框
       layer.close(index);
     });
   })
@@ -24,6 +25,7 @@ function getUserInfo() {
   $.ajax({
     method: 'GET',
     url: '/my/userinfo',
+    // headers就是请求头配置对象
     // headers: {
     //     Authorization: localStorage.getItem('token') || ''
     // },
@@ -34,6 +36,7 @@ function getUserInfo() {
       // 调用renderAvatar函数渲染用户头像
       renderAvatar(res.data);
     }
+    // 不论成功还是失败,最终都会调用complete
     // complete: function (res) {
     //     // console.log('执行了complete回调：');
     //     // console.log(res);
